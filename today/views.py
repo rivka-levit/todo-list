@@ -13,6 +13,12 @@ class TodayView(View):
             'completed': completed
         })
 
+    def post(self, request):
+        task_name = request.POST['add_task']
+        new_task = TaskModel(name=task_name)
+        new_task.save()
+        return redirect(request.META['HTTP_REFERER'])
+
 
 def mark_done(request, task_id):
     task = TaskModel.objects.get(pk=task_id)
@@ -21,6 +27,14 @@ def mark_done(request, task_id):
     return redirect(request.META['HTTP_REFERER'])
 
 
+def delete_task(request, task_id):
+    task = TaskModel.objects.get(pk=task_id)
+    task.delete()
+    return redirect(request.META['HTTP_REFERER'])
+
+
 def undo_task(request, task_id):
-    print('undo')
+    task = TaskModel.objects.get(pk=task_id)
+    task.is_done = False
+    task.save()
     return redirect('today:today_tasks')
