@@ -7,7 +7,7 @@ class TodayView(View):
     def get(self, request):
         tasks = Task.objects.filter(is_done=False)
         completed = Task.objects.filter(is_done=True)
-        return render(request, 'today/today.html', {
+        return render(request, 'todo/today.html', {
             'title': 'TODO LIST - Today',
             'tasks': tasks,
             'completed': completed
@@ -37,4 +37,4 @@ def undo_task(request, task_id):
     task = Task.objects.get(pk=task_id)
     task.is_done = False
     task.save()
-    return redirect('today:today_tasks')
+    return redirect('todo:today_tasks')

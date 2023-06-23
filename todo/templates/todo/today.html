@@ -13,8 +13,8 @@
                 <div class="card-body">
                     {{ task.name }}
                     <span style="position: relative; float: right;">
-                        <a class="btn btn-success" href="{% url 'today:done' task.id %}"><i class="fa fa-check"></i> Mark as Done</a>
-                        <a class="btn btn-danger" href="{% url 'today:delete_task' task.id %}"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-success" href="{% url 'todo:done' task.id %}"><i class="fa fa-check"></i> Mark as Done</a>
+                        <a class="btn btn-danger" href="{% url 'todo:delete_task' task.id %}"><i class="fa fa-trash"></i></a>
                         <a class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                     </span>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="card-body">
                     {{ done_task.name }}
                     <span style="position: relative; float: right;">
-                        <a class="btn btn-outline-secondary" href="{% url 'today:undo' done_task.id %}">
+                        <a class="btn btn-outline-secondary" href="{% url 'todo:undo' done_task.id %}">
                             <i class="fa fa-check"></i> Undo
                         </a>
                     </span>
@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-md-6 col-lg-6 p-0" style="position: absolute; bottom: 50px;">
             <!-- To Do Form -->
-            <form action="{% url 'today:today_tasks' %}" method="post">
+            <form action="{% url 'todo:today_tasks' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <span style="display: flex;">
