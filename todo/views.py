@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import Task
+from .forms import EditTaskForm
 
 
 class TodayView(View):
@@ -23,7 +24,11 @@ class TodayView(View):
 class EditView(View):
     def get(self, request, task_id):
         task = Task.objects.get(pk=task_id)
-        return render(request, 'todo/edit.html')
+        form = EditTaskForm(instance=task)
+        return render(request, 'todo/edit.html', {
+            'task': task,
+            'form': form
+        })
 
 
 def mark_done(request, task_id):

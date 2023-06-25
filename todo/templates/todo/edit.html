@@ -3,7 +3,20 @@
 {% block content %}
 
 <div class="container">
-    <h3 class="pt-5 text-center">Edit Task</h3>
+    <h3 class="pt-5 text-center mb-5">Edit Task</h3>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <form action="{% url 'todo:edit_task' task.id%}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <span style="display: flex;">
+                        {{ form.name }}
+                        <button class="btn btn-outline-primary" style="width: 200px;" type="submit">Save</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
