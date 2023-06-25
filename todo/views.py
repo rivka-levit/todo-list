@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import Task
 from .forms import EditTaskForm
+from django.contrib import messages
 
 
 class TodayView(View):
@@ -29,6 +30,15 @@ class EditView(View):
             'task': task,
             'form': form
         })
+
+    def post(self, request, task_id):
+        task = Task.objects.get(pk=task_id)
+        form = EditTaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('todo:today_tasks')
+        messages.error(request, 'Invalid input!')
+        return redirect(request.META['HTTP_REFERER'])
 
 
 def mark_done(request, task_id):

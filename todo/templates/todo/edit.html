@@ -4,6 +4,7 @@
 
 <div class="container">
     <h3 class="pt-5 text-center mb-5">Edit Task</h3>
+    {% include 'todo/includes/alerts.html' %}
     <div class="row">
         <div class="offset-2 col-md-8">
             <form action="{% url 'todo:edit_task' task.id%}" method="post">
