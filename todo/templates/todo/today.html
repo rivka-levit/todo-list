@@ -15,7 +15,7 @@
                     <span style="position: relative; float: right;">
                         <a class="btn btn-success" href="{% url 'todo:done' task.id %}"><i class="fa fa-check"></i> Mark as Done</a>
                         <a class="btn btn-danger" href="{% url 'todo:delete_task' task.id %}"><i class="fa fa-trash"></i></a>
-                        <a class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-primary" href="{% url 'todo:edit_task' task.id %}"><i class="fa fa-pencil"></i></a>
                     </span>
                 </div>
             </div>

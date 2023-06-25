@@ -20,6 +20,12 @@ class TodayView(View):
         return redirect(request.META['HTTP_REFERER'])
 
 
+class EditView(View):
+    def get(self, request, task_id):
+        task = Task.objects.get(pk=task_id)
+        return render(request, 'todo/edit.html')
+
+
 def mark_done(request, task_id):
     task = Task.objects.get(pk=task_id)
     task.is_done = True
