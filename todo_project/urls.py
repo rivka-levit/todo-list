@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from todo_project.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('todo.urls', namespace='todo'))
+    path('', include('todo.urls', namespace='todo')),
+    path('', IndexView.as_view(), name='index'),
 ]
